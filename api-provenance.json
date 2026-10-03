@@ -1,0 +1,9 @@
+{
+  "source": "https://creatomate.com/llms/api.md",
+  "checked": "2026-10-03",
+  "referenceDocumentSha256": "46b9a659b35972dd736d99823212105f50c8f46153e9f5f7bc00abf520b3e952",
+  "publicMetadataSha256": "33e64078104521ac630907dcad22fea3439f7fd34105b1617f729810604f796a",
+  "copiedExampleCredentials": false,
+  "nativeOperations": 11,
+  "schemaScope": "Reviewed routing/basic input validation; full RenderScript and transcripts are provider-defined opaque JSON."
+}

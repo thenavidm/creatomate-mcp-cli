@@ -1,0 +1,3 @@
+# Third-party notices
+
+The owned integration preserves its existing AGPL-3.0 license and Navid Media house framework. Reviewed functional API routing/basic field facts are transformed from public Creatomate documentation; provenance hashes/URLs are recorded in api-provenance.json. Full provider prose, example credentials and executable vendor code are not redistributed. Official/community code was inspected or exercised only for comparison. Dependency notices remain in installed packages. Packaging/development dependencies are excluded from desktop runtime. Provider trademarks, terms and asset rights remain separate.

@@ -1,0 +1,25 @@
+# Creatomate comparisons
+
+| Offering | Reviewed surface | Strengths and limits |
+| --- | --- | --- |
+| [Official hosted MCP](https://creatomate.com/docs/fundamentals/getting-started/mcp-integration) | Provider URL https://api.creatomate.com/mcp or project-specific /mcp/PROJECT-ID | Eight documented tools: get_guide, list_templates, get_template, create_template, update_template, delete_template, create_render and get_render. OAuth or project API-key Bearer, one project per connection, provider-maintained current guide and template/render workflows. Client approvals are explicitly documented. No authenticated hosted discovery is claimed here. |
+| [Official SDK](https://github.com/Creatomate/creatomate-node) | Published creatomate 1.2.1, npm source/fixture | Node application SDK, not a task CLI. Source still uses v1 and exposes startRender plus an optional polling render helper. Actual exported startRender with injected HTTP submitted once without a confirmation argument. No missing hosted-MCP approval claim follows from an SDK call. |
+| [Official preview SDK](https://github.com/Creatomate/creatomate-preview) | @creatomate/preview 1.6.1 package metadata | Browser preview/editor integration, useful for visual design; not an agent task CLI and not recreated by this package. |
+| [Official n8n integration](https://github.com/Creatomate/n8n-nodes-creatomate) | @creatomate/n8n-nodes-creatomate 1.0.1 metadata | Workflow-node integration, a separate surface from local CLI/MCP. No live installation or task comparison claimed. |
+| [Community MCP](https://github.com/WAR10CK222/creatomate-mcp-server) | Source c48577bc95de4ce8e77ed7e12d902dcd7766fdca, package version 1.0.0 / server string 2.0.0 | One render_video tool, animation resource and social-ad prompt, with guided style/TTS/caption inputs and SDK polling. Inspected source has no task CLI binary, named project routing or shared confirmation guard. Source inspection is not a runtime or visual-quality benchmark. |
+| This owned package | Shared task CLI, local stdio MCP and versioned desktop bundle | Seventeen tools, eleven reads/helpers and six confirmed operations; current v2 template CRUD and single-object renders, documented v1 feeds/tag compatibility, forced free dry-run validation and exact bounded paid/status workflows. Isolated projects and direct-call read-only controls. No hosted OAuth, guide tool, visual editor, media downloader or automatic publishing. |
+
+Checked October 3, 2026. The current account inventory contains no newer owned Creatomate repository. The old five-tool MCP uses v1 and has no declared task CLI. The official npm SDK fixture uses a fake key and injected HTTP; no provider request or credits were spent. Our equivalent confirmed render fixture refuses before fetch without explicit approval, and the exact batch hash refuses changes to profile label, order or payloads before the first submission. On first failure it reports known earlier submissions and leaves subsequent work unattempted. These are useful local execution and review differences, not universal superiority or measured token savings.
+
+The official hosted product already has project-specific connections, template creation/editing/deletion, raw-source renders, guide fetching, free dry runs and client approvals. None are presented as invented official gaps. The owned shared MCP offers the same local task workflows as the CLI for stdio users. Native v1 tag batches already exist; our ordered one-to-ten exact payload review serves a different task from rendering every tagged template. Native v1 feeds are documented and absent from the reviewed hosted eight-tool list, not claimed absent from every provider client.
+
+No dedicated official task CLI was found in the reviewed provider docs, ten official GitHub repositories or current Creatomate npm search results; this is a checked-search finding, not proof that no CLI exists anywhere. More names, SEO and a logo are not build qualification. Provider account outcomes, authenticated hosted discovery, actual desktop GUI installation and matched successful Codex task/token measurements remain unverified.
+
+
+| Route | What the agent receives | Evidence |
+| --- | --- | --- |
+| Local MCP | Client-loaded tool schemas and requested JSON results | Actual shared discovery and policy fixtures |
+| Task CLI | Discovered help/schema and command output; optional --select | Same handlers and guard through the house SDK bridge |
+| Official hosted MCP | Provider tools, current guide and account workflow | Current provider docs; authenticated behavior unmeasured |
+
+There are no fresh matched successful Codex task/token measurements for this refresh. Schema/tool counts, character division and another client’s results are not token savings. --select reduces returned fields locally, not upstream body size, network calls, render credits or guaranteed client context use. Record Codex/model/package versions, date, loading mode, equivalent completed task, actual API/usage and latency before publishing an efficiency winner. Claude Code benchmarking remains deferred at Navid’s instruction.

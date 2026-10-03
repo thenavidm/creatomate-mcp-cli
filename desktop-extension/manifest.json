@@ -1,0 +1,107 @@
+{
+  "manifest_version": "0.2",
+  "name": "creatomate",
+  "display_name": "Creatomate MCP Server & CLI",
+  "version": "2.0.0",
+  "description": "Creatomate template/render/feed tools with private project profiles and approved exact batches.",
+  "long_description": "17 shared tools: 11 reads/helpers and six confirmed operations. V2 template CRUD and rendering, forced free validation, exact ordered paid/status batches and documented V1 compatibility.",
+  "author": {
+    "name": "Navid Moazzez",
+    "url": "https://navid.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thenavidm/creatomate-mcp-cli"
+  },
+  "homepage": "https://navid.me/mcp-servers/creatomate",
+  "documentation": "https://github.com/thenavidm/creatomate-mcp-cli/blob/main/INSTALL.md",
+  "support": "https://github.com/thenavidm/creatomate-mcp-cli/issues",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "cli",
+    "command-line-tool",
+    "creatomate",
+    "video-rendering",
+    "image-rendering",
+    "renderscript",
+    "template-management",
+    "render-batches",
+    "dry-run",
+    "codex",
+    "claude-code",
+    "claude-desktop",
+    "cursor",
+    "ai-agents",
+    "typescript",
+    "desktop-extension",
+    "private-accounts",
+    "json",
+    "mutation-approval",
+    "write-safety",
+    "gemini-cli",
+    "windsurf",
+    "open-source",
+    "creator-workflows",
+    "project-isolation",
+    "read-only",
+    "schema-validation"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.js"
+      ],
+      "env": {
+        "CREATOMATE_API_KEY": "${user_config.api_key}",
+        "CREATOMATE_TOKEN_FILE": "${user_config.token_file}",
+        "CREATOMATE_READ_ONLY": "${user_config.read_only}",
+        "CREATOMATE_ALLOW_DESTRUCTIVE": "${user_config.allow_destructive}"
+      }
+    }
+  },
+  "user_config": {
+    "token_file": {
+      "type": "string",
+      "title": "Private token-only file",
+      "description": "Absolute owner-private token-only project key file; overrides environment key.",
+      "required": false
+    },
+    "read_only": {
+      "type": "boolean",
+      "title": "Read only",
+      "description": "Hide and refuse six paid/template operations. Forced free provider dry runs remain available.",
+      "default": false,
+      "required": false
+    },
+    "api_key": {
+      "type": "string",
+      "title": "Project API key",
+      "description": "Private Creatomate project REST API key, distinct from hosted OAuth.",
+      "required": false,
+      "sensitive": true
+    },
+    "allow_destructive": {
+      "type": "boolean",
+      "title": "Allow confirmed mutations",
+      "description": "Permit mutation execution only when the tool call explicitly confirms the exact action. Disable to refuse all mutations.",
+      "default": true,
+      "required": false
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=22"
+    }
+  }
+}
