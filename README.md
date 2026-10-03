@@ -59,26 +59,26 @@ codex mcp add creatomate --env CREATOMATE_TOKEN_FILE=/absolute/private/creatomat
 
 | Number | Section | What it covers |
 | --- | --- | --- |
-| 1 | [What you can ask it](#1-what-you-can-ask-it) | What you can ask it |
-| 2 | [Quick install](#2-quick-install) | Quick install |
-| 3 | [Set up Creatomate access](#3-set-up-creatomate-access) | Set up Creatomate access |
-| 4 | [Connect your client](#4-connect-your-client) | Connect your client |
-| 5 | [Check it works](#5-check-it-works) | Check it works |
-| 6 | [Output, flags and exit codes](#6-output-flags-and-exit-codes) | Output, flags and exit codes |
-| 7 | [MCP or CLI and token cost](#7-mcp-or-cli-and-token-cost) | MCP or CLI and token cost |
-| 8 | [Every tool and argument](#8-every-tool-and-argument) | Every tool and argument |
-| 9 | [Template and rendering workflows](#9-template-and-rendering-workflows) | Template and rendering workflows |
-| 10 | [Exact batches, feeds and legacy rendering](#10-exact-batches-feeds-and-legacy-rendering) | Exact batches, feeds and legacy rendering |
-| 11 | [Several private accounts](#11-several-private-accounts) | Several private accounts |
-| 12 | [Writing safely](#12-writing-safely) | Writing safely |
-| 13 | [How the two surfaces work](#13-how-the-two-surfaces-work) | How the two surfaces work |
-| 14 | [Your data](#14-your-data) | Your data |
-| 15 | [Environment variables](#15-environment-variables) | Environment variables |
-| 16 | [Updates and removal](#16-updates-and-removal) | Updates and removal |
-| 17 | [Troubleshooting](#17-troubleshooting) | Troubleshooting |
-| 18 | [API coverage and comparisons](#18-api-coverage-and-comparisons) | API coverage and comparisons |
-| 19 | [Versions and migration](#19-versions-and-migration) | Versions and migration |
-| 20 | [FAQ](#20-faq) | FAQ |
+| 1 | [What you can ask it](#1-what-you-can-ask-it) | Requests the shared tools can fulfill |
+| 2 | [Quick install](#2-quick-install) | npm binaries, prerequisites and discovery |
+| 3 | [Set up Creatomate access](#3-set-up-creatomate-access) | Project keys, credits, limits and revocation |
+| 4 | [Connect your client](#4-connect-your-client) | Codex first and every advertised client |
+| 5 | [Check it works](#5-check-it-works) | Local checks and deliberate first read |
+| 6 | [Output, flags and exit codes](#6-output-flags-and-exit-codes) | Native JSON, repeatable flags and stable exits |
+| 7 | [MCP or CLI and token cost](#7-mcp-or-cli-and-token-cost) | Surface choice and pending measured usage |
+| 8 | [Every tool and argument](#8-every-tool-and-argument) | All seventeen tools and eleven native routes |
+| 9 | [Template and rendering workflows](#9-template-and-rendering-workflows) | Inspect, validate, approve and check a render |
+| 10 | [Exact batches, feeds and legacy rendering](#10-exact-batches-feeds-and-legacy-rendering) | Approval hashes, partial outcomes and v1 contracts |
+| 11 | [Several private accounts](#11-several-private-accounts) | Private profile routing and key isolation |
+| 12 | [Writing safely](#12-writing-safely) | Confirmation, read-only and audit boundaries |
+| 13 | [How the two surfaces work](#13-how-the-two-surfaces-work) | Shared catalogue, SDK bridge and request rules |
+| 14 | [Your data](#14-your-data) | Provider payloads, redaction and retention |
+| 15 | [Environment variables](#15-environment-variables) | Credentials, policy and request tuning |
+| 16 | [Updates and removal](#16-updates-and-removal) | npm, desktop, reconnect and removal |
+| 17 | [Troubleshooting](#17-troubleshooting) | Authentication, validation, credits and job failures |
+| 18 | [API coverage and comparisons](#18-api-coverage-and-comparisons) | Official hosted MCP, SDK and community evidence |
+| 19 | [Versions and migration](#19-versions-and-migration) | Locked components and breaking legacy changes |
+| 20 | [FAQ](#20-faq) | Twenty specific expanding answers |
 
 ## 1. What you can ask it
 
@@ -547,7 +547,7 @@ Local current reviewed method/path/body/query metadata for eleven documented ope
 
 ##### createRender
 
-`POST /v2/renders` — [native reference](https://creatomate.com/llms/api.md).
+`POST /v2/renders`; [native reference](https://creatomate.com/llms/api.md).
 
 No fields, or provider-defined opaque JSON. Inspect the full schema.
 
@@ -578,7 +578,7 @@ V2 dry_run:true returns 200 with valid/errors/warnings/source and no queued rend
 
 ##### getRender
 
-`GET /v2/renders/{render_id}` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v2/renders/{render_id}`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -590,7 +590,7 @@ Current documented route; no undocumented behavior inferred.
 
 ##### createTemplate
 
-`POST /v2/templates` — [native reference](https://creatomate.com/llms/api.md).
+`POST /v2/templates`; [native reference](https://creatomate.com/llms/api.md).
 
 No fields, or provider-defined opaque JSON. Inspect the full schema.
 
@@ -604,7 +604,7 @@ Raw RenderScript is provider-validated; only supplied changes replace fields.
 
 ##### listTemplates
 
-`GET /v2/templates` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v2/templates`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -616,7 +616,7 @@ No documented paging parameters; no guessed page/per_page support.
 
 ##### getTemplate
 
-`GET /v2/templates/{template_id}` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v2/templates/{template_id}`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -628,7 +628,7 @@ Current documented route; no undocumented behavior inferred.
 
 ##### updateTemplate
 
-`PATCH /v2/templates/{template_id}` — [native reference](https://creatomate.com/llms/api.md).
+`PATCH /v2/templates/{template_id}`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -646,7 +646,7 @@ Raw RenderScript is provider-validated; only supplied changes replace fields.
 
 ##### deleteTemplate
 
-`DELETE /v2/templates/{template_id}` — [native reference](https://creatomate.com/llms/api.md).
+`DELETE /v2/templates/{template_id}`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -658,7 +658,7 @@ Current documented route; no undocumented behavior inferred.
 
 ##### createLegacyRender
 
-`POST /v1/renders` — [native reference](https://creatomate.com/llms/api.md).
+`POST /v1/renders`; [native reference](https://creatomate.com/llms/api.md).
 
 No fields, or provider-defined opaque JSON. Inspect the full schema.
 
@@ -689,7 +689,7 @@ Native v1 returns render array; tags can match an unbounded number of templates.
 
 ##### listFeeds
 
-`GET /v1/feeds` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v1/feeds`; [native reference](https://creatomate.com/llms/api.md).
 
 No fields, or provider-defined opaque JSON. Inspect the full schema.
 
@@ -699,7 +699,7 @@ Current documented route; no undocumented behavior inferred.
 
 ##### getFeed
 
-`GET /v1/feeds/{feed_id}` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v1/feeds/{feed_id}`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
@@ -711,7 +711,7 @@ Current documented route; no undocumented behavior inferred.
 
 ##### getFeedSample
 
-`GET /v1/feeds/{feed_id}/sample` — [native reference](https://creatomate.com/llms/api.md).
+`GET /v1/feeds/{feed_id}/sample`; [native reference](https://creatomate.com/llms/api.md).
 
 | Argument | Required | Type | Details |
 | --- | --- | --- | --- |
