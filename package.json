@@ -1,12 +1,13 @@
 {
   "name": "@thenavidm/creatomate-mcp-cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Creatomate MCP and shared CLI with isolated projects, reviewed render batches and explicit render/template confirmation.",
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
     "creatomate-mcp": "dist/index.js",
-    "creatomate-cli": "dist/index.js"
+    "creatomate-cli": "dist/index.js",
+    "creatomate-mcp-cli": "dist/npx.js"
   },
   "engines": {
     "node": ">=22"
