@@ -887,10 +887,10 @@ No dedicated official task CLI was found in the reviewed provider docs, ten offi
 
 | Component | Verified local version |
 | --- | --- |
-| Owned package / desktop | 3.0.0 |
+| Owned package / desktop | 3.0.1 |
 | Runtime | Node22+ |
 | API | V2 templates/renders, documented V1 feeds/tag compatibility |
-| @thenavidm/slipway | 0.1.14 |
+| @thenavidm/slipway | 0.1.17 |
 | MCP TypeScript SDK, through Slipway | 2.3.0 |
 | ajv | 8.20.0 |
 | ajv-formats | 3.0.1 |

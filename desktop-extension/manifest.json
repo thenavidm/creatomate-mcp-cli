@@ -2,7 +2,7 @@
   "manifest_version": "0.2",
   "name": "creatomate",
   "display_name": "Creatomate MCP Server & CLI",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Creatomate template/render/feed tools with private project profiles and approved exact batches.",
   "long_description": "17 shared tools: 11 reads/helpers and six confirmed operations. V2 template CRUD and rendering, forced free validation, exact ordered paid/status batches and documented V1 compatibility.",
   "author": {
