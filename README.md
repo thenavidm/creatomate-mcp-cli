@@ -11,7 +11,7 @@
 
 Creatomate MCP server and CLI for Codex and AI agents. Seventeen shared tools for current template editing, free validation, approved rendering and exact bounded batches across isolated project profiles.
 
-One package provides a task CLI, local stdio MCP and versioned desktop bundle. Built and maintained by [Navid Moazzez](https://navid.me?utm_source=github&utm_medium=referral&utm_campaign=creatomate-mcp-cli&utm_content=readme). Complete setup: [navid.me](https://navid.me/mcp-servers/creatomate?utm_source=github&utm_medium=referral&utm_campaign=creatomate-mcp-cli&utm_content=guide).
+One package provides a task CLI, local stdio MCP and versioned desktop bundle. Built and maintained by [Navid Moazzez](https://navid.me?utm_source=github&utm_medium=referral&utm_campaign=creatomate-mcp-cli&utm_content=readme). Built on [Slipway](https://github.com/thenavidm/slipway), which turns one definition of each tool into the MCP server and the CLI. Complete setup: [navid.me](https://navid.me/mcp-servers/creatomate?utm_source=github&utm_medium=referral&utm_campaign=creatomate-mcp-cli&utm_content=guide).
 
 <img src="https://cdn.navid.me/repos/creatomate-mcp-cli-retina.gif" alt="Illustrated Creatomate workflow using the shared navid.me terminal" width="520">
 
@@ -65,7 +65,7 @@ codex mcp add creatomate --env CREATOMATE_TOKEN_FILE=/absolute/private/creatomat
 | 4 | [Connect your client](#4-connect-your-client) | Codex first and every advertised client |
 | 5 | [Check it works](#5-check-it-works) | Local checks and deliberate first read |
 | 6 | [Output, flags and exit codes](#6-output-flags-and-exit-codes) | Native JSON, repeatable flags and stable exits |
-| 7 | [MCP or CLI and token cost](#7-mcp-or-cli-and-token-cost) | Surface choice and pending measured usage |
+| 7 | [MCP or CLI and token cost](#7-mcp-or-cli-and-token-cost) | Measured in Claude Code and Codex |
 | 8 | [Every tool and argument](#8-every-tool-and-argument) | All seventeen tools and eleven native routes |
 | 9 | [Template and rendering workflows](#9-template-and-rendering-workflows) | Inspect, validate, approve and check a render |
 | 10 | [Exact batches, feeds and legacy rendering](#10-exact-batches-feeds-and-legacy-rendering) | Approval hashes, partial outcomes and v1 contracts |
@@ -163,7 +163,7 @@ MCP names use underscores; CLI hyphen names, flags/help and schemas derive from 
 | Flag or command | Contract |
 | --- | --- |
 | tools / COMMAND --help / schema COMMAND | Actual current discovery, flags and input schema |
-| --agent | Compact JSON, no color/prompts; --yes is not confirmation |
+| --agent | Compact JSON and no prompts; never confirms a write |
 | --select a,b.c | Local output selection; no reduction in provider requests or render credits |
 | --payload JSON | Native render object as quoted JSON |
 | --renders JSON | Repeat once per native object, preserving batch order |
@@ -181,7 +181,8 @@ creatomate-cli get-render --render-id YOUR_RENDER_ID --agent --select id,status,
 | Exit | Meaning |
 | --- | --- |
 | 0 | Successful call; provider dry-run valid:false is still a successfully received validation report |
-| 2 | Invalid local arguments or refused mutation/review |
+| 1 | Unexpected error |
+| 2 | Invalid local arguments or refused mutation/review, an unknown command or a hidden write |
 | 3 | Provider not found |
 | 4 | Authentication or permission failure |
 | 5 | Provider semantic/transport/content failure |
@@ -198,7 +199,19 @@ Never infer render success from CLI exit0 or the presence of url. A paid render 
 | Task CLI | Discovered help/schema and command output; optional --select | Same handlers and guard through the house SDK bridge |
 | Official hosted MCP | Provider tools, current guide and account workflow | Current provider docs; authenticated behavior unmeasured |
 
-There are no fresh matched successful Codex task/token measurements for this refresh. Schema/tool counts, character division and another client’s results are not token savings. --select reduces returned fields locally, not upstream body size, network calls, render credits or guaranteed client context use. Record Codex/model/package versions, date, loading mode, equivalent completed task, actual API/usage and latency before publishing an efficiency winner. Claude Code benchmarking remains deferred at Navid’s instruction.
+Measured on 2026-10-05 against 2.0.1, the same day, with Claude Code 2.1.286 on Claude Opus 5.5 (one short prompt with and without the server connected, the difference read from the API's own usage figures) and Codex 0.159.3 on gpt-6.1-sol:
+
+| Cost | 2.0.1 | 3.0.0 |
+| --- | --- | --- |
+| Claude Code, every tool loaded, every message | 7,973 | 7,949 |
+| Claude Code's default, tool search, every message | 509 | 509 |
+| `SKILL.md`, read once | 3,870 | 3,928 |
+| Codex over the CLI, one task, median of five | 103,721 | 83,234 |
+| Codex over MCP, the same task, median of five | 44,830 | 44,818 |
+
+The task was "find the command that renders a video from a template, and the flags it requires". Over the CLI, every 2.0.1 run guessed a `render` command that does not exist, because 2.0.1's help listed none, and every extra step carries the whole conversation forward; every 3.0.0 run asked `which`. `SKILL.md` costs 58 more because it now says how approval works over MCP and lists every exit code.
+
+--select reduces returned fields locally, not upstream body size, network calls, render credits or guaranteed client context use, and no other offering was measured.
 
 ## 8. Every tool and argument
 
@@ -256,7 +269,7 @@ Confirmed current v2 template creation. Preserves native source JSON and returns
 | `source` | Yes | object | Native RenderScript object; consult the current guide. Not fully locally validated. |
 | `tags` | No; schema/guard rules still apply | array | Exact tags; comma inside one tag is rejected because the native list query is comma-separated. uniqueItems: `true`. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 #### update_template
 
@@ -271,7 +284,7 @@ Confirmed PATCH changes only supplied name/source/tags. Source or tags replace t
 | `source` | No; schema/guard rules still apply | object | Native field; inspect current provider documentation. |
 | `tags` | No; schema/guard rules still apply | array | Exact tags; comma inside one tag is rejected because the native list query is comma-separated. uniqueItems: `true`. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 #### delete_template
 
@@ -283,7 +296,7 @@ Explicitly confirmed v2 DELETE. Provider documents recoverable deletion for 30 d
 | --- | --- | --- | --- |
 | `template_id` | Yes | string | Exact project template/render/feed ID. No URL, slash, traversal or query string. minLength: `1`. maxLength: `128`. pattern: `"^[A-Za-z0-9_-]+$"`. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 #### create_render
 
@@ -295,7 +308,7 @@ Confirmed paid v2 submission from template or raw top-level RenderScript. Return
 | --- | --- | --- | --- |
 | `payload` | Yes | object | V2 render fields are at the top level. Pass template_id or raw elements. RenderScript properties beyond these basics remain opaque and require provider validation. dry_run is reserved for validate_render; v1 source/tags/transcripts belong to create_legacy_render. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 **input.payload**
 
@@ -379,7 +392,7 @@ Explicitly confirmed v1 submission for native tag batches or supplied transcript
 | --- | --- | --- | --- |
 | `payload` | Yes | object | V2 render fields are at the top level. Pass template_id or raw elements. RenderScript properties beyond these basics remain opaque and require provider validation. dry_run is reserved for validate_render; v1 source/tags/transcripts belong to create_legacy_render. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 **input.payload**
 
@@ -485,7 +498,7 @@ Confirmed one-to-ten exact ordered v2 submissions. Verify review hash/profile an
 | `renders` | Yes | array | Exactly one to ten ordered v2 requests; all validated before any provider request. minItems: `1`. maxItems: `10`. |
 | `review_sha256` | Yes | string | Exact preview_render_batch hash for the same project profile and payloads. pattern: `"^[a-f0-9]{64}$"`. |
 | `account` | No; schema/guard rules still apply | string | Exact private project profile label; no inherited/global key fallback. |
-| `confirm` | No; schema/guard rules still apply | boolean | Must be true for this exact user-requested mutation or paid render. |
+| `confirm` | No; schema/guard rules still apply | boolean | Set true only when the user asked for exactly this action. |
 
 **input.renders**
 
@@ -780,13 +793,15 @@ The official hosted MCP already supports one project per connection and project-
 
 Every create/update/delete template, regular v2 render, legacy v1 render and exact batch submission requires confirm:true or --confirm. The shared guard runs before execution. CREATOMATE_READ_ONLY=1 hides all six operations and refuses direct confirmed calls; CREATOMATE_ALLOW_DESTRUCTIVE=0 also refuses them. --agent/--yes never approves spending or changes.
 
+Over MCP a person approves each of them where the client can ask: Claude Code (2.1.246 and later) shows its own prompt, and a client that can show forms asks with an approval form whose one box starts unticked. Each approval is signed, bound to that exact call and works once. Where a client can do neither, the model's confirm:true counts. CREATOMATE_CONFIRM=model makes confirm:true enough everywhere, for an agent with no person to ask.
+
 validate_render is an explicit provider request classified as read-only because dry_run:true is forced and provider docs say no render/credits. The same project data still leaves the machine and request rate still applies. Local preview_render_batch is separate and does not make that provider request.
 
-Confirmation records caller intent; it is not provider permission, a budget reservation or verified human identity. Optional metadata-only audit logs record guard outcomes, not full native payloads, credentials or guaranteed provider success. Protect the private audit path; an audit write failure does not make execution transactional. No request automatically retries and no hidden paid follow-up is performed.
+A model's confirm:true records caller intent; it is not provider permission or a budget reservation, and where the client can ask, a person's signed approval is asked for instead. Optional metadata-only audit logs record guard outcomes and who approved each call, then whether it was done or failed, not full native payloads, credentials or guaranteed provider success. Protect the private audit path; an audit write failure does not make execution transactional. No request automatically retries and no hidden paid follow-up is performed.
 
 ## 13. How the two surfaces work
 
-One ALL_TOOLS catalogue, Ajv validators, private config router, API client and house WriteGuard serve both binaries. The copied house CLI uses the actual MCP server through the SDK’s in-memory transport; standalone MCP uses stdio. Help/flags/schema derive from the same catalogue rather than separate hand-written commands.
+One ALL_TOOLS catalogue, Ajv validators, private config router and API client serve both binaries through [Slipway](https://github.com/thenavidm/slipway), which builds the MCP server, over stdio or `--http`, and the CLI from each tool's one definition, with one write guard, one set of exit codes and one release check. Help/flags/schema derive from the same catalogue rather than separate hand-written commands.
 
 Fixed method/path rules permit the eleven reviewed native routes only. HTTP redirects are refused, keys are not forwarded off origin, request/response sizes are bounded, all profiles in one client share request-start pacing and provider failures are surfaced once. Full RenderScript validation is deliberately delegated to the documented free dry-run API; local basic schema acceptance is not provider acceptance.
 
@@ -811,6 +826,12 @@ The wrapper has no persistent template/feed/render cache. Audit output is option
 | `CREATOMATE_AUDIT_LOG` | Optional private metadata-only guard log; no provider transaction guarantee |
 | `CREATOMATE_REQUEST_TIMEOUT_MS` | 100–300000; default 30000; no automatic retries |
 | `CREATOMATE_MIN_REQUEST_INTERVAL_MS` | 0–10000; default 350; process-wide request-start pacing across profiles |
+| `CREATOMATE_CONFIRM` | `human` by default; `model` lets confirm:true alone approve over MCP, for an agent with no person to ask |
+| `CREATOMATE_SURFACE` | `full` by default; `search` lists three tools that find, describe and run the rest |
+| `CREATOMATE_TOOL_TIMEOUT_MS` | Give up on any tool after this long |
+| `CREATOMATE_HTTP_PORT`, `CREATOMATE_HTTP_HOST`, `CREATOMATE_HTTP_TOKEN` | For `--http`: port 8787 and host 127.0.0.1 by default; any other host needs the bearer token |
+| `CREATOMATE_HTTP_ALLOWED_ORIGINS` | Comma-separated browser origins allowed to call `--http`; a page from any other site is refused |
+| `CREATOMATE_DEBUG` | `1` prints debug lines on stderr |
 
 No automatic .env or official-session loader. GUI/remote clients have their own filesystem/environment. Multiple client processes share upstream account quota but not this process’s pacing.
 
@@ -866,10 +887,11 @@ No dedicated official task CLI was found in the reviewed provider docs, ten offi
 
 | Component | Verified local version |
 | --- | --- |
-| Owned package / desktop | 2.0.0 |
+| Owned package / desktop | 3.0.0 |
 | Runtime | Node22+ |
 | API | V2 templates/renders, documented V1 feeds/tag compatibility |
-| @modelcontextprotocol/sdk | 1.32.0 |
+| @thenavidm/slipway | 0.1.14 |
+| MCP TypeScript SDK, through Slipway | 2.3.0 |
 | ajv | 8.20.0 |
 | ajv-formats | 3.0.1 |
 | typescript | 7.0.2 |
@@ -917,7 +939,7 @@ No dedicated task CLI was found in the reviewed current provider docs, official 
 <details>
 <summary><b>Can I use it in Codex?</b></summary>
 
-Use the documented private stdio config or shipped SKILL and task CLI. Isolated config/protocol checks and successful account/task usage are tracked separately.
+Use the documented private stdio config or shipped SKILL and task CLI. Section 7 has what Codex 0.159.3 read for one task over each; live account tasks remain unverified.
 
 </details>
 
@@ -1015,7 +1037,7 @@ No. It returns provider data/status. Finished render records, files and snapshot
 <details>
 <summary><b>Is CLI more token-efficient than MCP?</b></summary>
 
-No fresh matched successful Codex task/token measurements establish that. Local --select output filtering is proven but counts and character estimates are not token savings.
+It depends on the client and the task. In Claude Code the CLI costs nothing until it is used, plus about 3,900 tokens for `SKILL.md` once, where the server costs about 510 tokens a message with tool search and 7,950 with every tool loaded. In Codex, finding the render command and its flags took a median of 83,234 input tokens over the CLI and 44,818 over MCP. Section 7 has how each was measured.
 
 </details>
 
@@ -1048,7 +1070,7 @@ If this is useful, star the repo and come say hi on [X](https://x.com/thenavidm)
 
 ## Dependencies
 
-Runtime: MCP TypeScript SDK, Ajv and ajv-formats. Development: TypeScript, Vitest, Vite and MCPB. Exact locked versions appear above. Packaging tools are excluded from desktop runtime.
+Runtime: Slipway, which brings the MCP TypeScript SDK, plus Ajv and ajv-formats. Development: TypeScript, Vitest, Vite and MCPB. Exact locked versions appear above. Packaging tools are excluded from desktop runtime.
 
 ## License
 

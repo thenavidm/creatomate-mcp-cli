@@ -22,4 +22,4 @@ No dedicated official task CLI was found in the reviewed provider docs, ten offi
 | Task CLI | Discovered help/schema and command output; optional --select | Same handlers and guard through the house SDK bridge |
 | Official hosted MCP | Provider tools, current guide and account workflow | Current provider docs; authenticated behavior unmeasured |
 
-There are no fresh matched successful Codex task/token measurements for this refresh. Schema/tool counts, character division and another client’s results are not token savings. --select reduces returned fields locally, not upstream body size, network calls, render credits or guaranteed client context use. Record Codex/model/package versions, date, loading mode, equivalent completed task, actual API/usage and latency before publishing an efficiency winner. Claude Code benchmarking remains deferred at Navid’s instruction.
+README section 7 has this package's own costs, measured in Claude Code and Codex against 2.0.1 on 2026-10-05. Schema/tool counts, character division and another client's results are not token savings, and no other offering was measured.

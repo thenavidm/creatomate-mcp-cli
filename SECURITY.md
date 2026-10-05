@@ -10,6 +10,8 @@ The wrapper has no persistent template/feed/render cache. Audit output is option
 
 Every create/update/delete template, regular v2 render, legacy v1 render and exact batch submission requires confirm:true or --confirm. The shared guard runs before execution. CREATOMATE_READ_ONLY=1 hides all six operations and refuses direct confirmed calls; CREATOMATE_ALLOW_DESTRUCTIVE=0 also refuses them. --agent/--yes never approves spending or changes.
 
+Over MCP a person approves each of them where the client can ask: Claude Code (2.1.246 and later) shows its own prompt, and a client that can show forms asks with an approval form whose one box starts unticked. Each approval is signed, bound to that exact call and works once. Where a client can do neither, the model's confirm:true counts. CREATOMATE_CONFIRM=model makes confirm:true enough everywhere, for an agent with no person to ask.
+
 validate_render is an explicit provider request classified as read-only because dry_run:true is forced and provider docs say no render/credits. The same project data still leaves the machine and request rate still applies. Local preview_render_batch is separate and does not make that provider request.
 
 Confirmation records caller intent; it is not provider permission, a budget reservation or verified human identity. Optional metadata-only audit logs record guard outcomes, not full native payloads, credentials or guaranteed provider success. Protect the private audit path; an audit write failure does not make execution transactional. No request automatically retries and no hidden paid follow-up is performed.

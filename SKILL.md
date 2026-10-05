@@ -25,7 +25,8 @@ Use --agent for compact JSON and --select for needed output fields. Dashed comma
 | Exit | Meaning |
 | --- | --- |
 | 0 | Success |
-| 2 | Invalid usage or refused operation |
+| 1 | Unexpected error |
+| 2 | Invalid usage or refused operation, an unknown command or a hidden write |
 | 3 | Not found |
 | 4 | Authentication/permissions |
 | 5 | API/transport failure |
@@ -36,7 +37,7 @@ Use --agent for compact JSON and --select for needed output fields. Dashed comma
 
 ## Approval and scope
 
-Every create/update/delete template, regular v2 render, legacy v1 render and exact batch submission requires confirm:true or --confirm. The shared guard runs before execution. CREATOMATE_READ_ONLY=1 hides all six operations and refuses direct confirmed calls; CREATOMATE_ALLOW_DESTRUCTIVE=0 also refuses them. --agent/--yes never approves spending or changes.
+Every create/update/delete template, regular v2 render, legacy v1 render and exact batch submission requires confirm:true or --confirm. The shared guard runs before execution. CREATOMATE_READ_ONLY=1 hides all six operations and refuses direct confirmed calls; CREATOMATE_ALLOW_DESTRUCTIVE=0 also refuses them. --agent/--yes never approves spending or changes. Over MCP the person approves each in the client's own prompt or form; confirm:true counts only where the client cannot ask.
 
 validate_render is an explicit provider request classified as read-only because dry_run:true is forced and provider docs say no render/credits. The same project data still leaves the machine and request rate still applies. Local preview_render_batch is separate and does not make that provider request.
 
